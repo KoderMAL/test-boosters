@@ -4,6 +4,7 @@ module TestBoosters
 
       def initialize(file_pattern, split_configuration_path, command)
         @command = command
+        @profile = cli_options[:profile]
         @file_pattern = file_pattern
         @split_configuration_path = split_configuration_path
       end
@@ -24,7 +25,7 @@ module TestBoosters
           return 0
         end
 
-        exit_status = TestBoosters::Job.run(@command, known, leftover)
+        exit_status = TestBoosters::Job.run(@command, @profile, known, leftover)
 
         after_job # execute some activities when the job finishes
 

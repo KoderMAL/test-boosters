@@ -31,6 +31,13 @@ module TestBoosters
         ) do |parameter|
           options.merge!(:dry_run => parameter)
         end
+
+        opts.on(
+          "--profile INDEX",
+          "Choose profile eg local, acc, dev"
+        ) do |parameter|
+          options.merge!(:profile => parameter)
+        end
       end
 
       parser.parse!

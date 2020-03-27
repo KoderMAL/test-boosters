@@ -1,12 +1,13 @@
 module TestBoosters
   class Job
 
-    def self.run(command, known_files, leftover_files)
-      new(command, known_files, leftover_files).run
+    def self.run(command, profile, known_files, leftover_files)
+      new(command, profile, known_files, leftover_files).run
     end
 
-    def initialize(command, known_files, leftover_files)
+    def initialize(command, profile, known_files, leftover_files)
       @command = command
+      @profile = profile
       @known_files = known_files
       @leftover_files = leftover_files
     end
@@ -33,7 +34,7 @@ module TestBoosters
         return 0
       end
 
-      TestBoosters::Shell.execute("#{@command} #{files.join(" ")}")
+      TestBoosters::Shell.execute("#{@command} -p #{@profile} #{files.join(" ")}")
     end
 
   end
