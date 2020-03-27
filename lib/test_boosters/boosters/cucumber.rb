@@ -8,13 +8,6 @@ module TestBoosters
         super(FILE_PATTERN, split_configuration_path, "bundle exec cucumber")
       end
 
-      def before_job
-        CucumberBoosterConfig::Injection.new(Dir.pwd, report_path).run
-      end
-
-      def after_job
-        TestBoosters::InsightsUploader.upload("cucumber", report_path)
-      end
 
       def display_header
         super
